@@ -30,6 +30,9 @@
         <h4 class="font-italic">Actions</h4>
         <ol class="list-unstyled">
           <li><a href="/companies/{{ $company->id }}/edit">Edit</a></li>
+          <li><a href="/projects/create">Add Project</a></li>
+          <li><a href="/companies">My Company</a></li>
+          <li><a href="/companies/create">Create new Company</a></li>
           <li>
             <a href="/companies/{{ $company->id }}"
               onclick="
@@ -49,7 +52,6 @@
             </form>
 
           </li>
-          <li><a href="#">Add new member</a></li>
         </ol>
       </div>
 
