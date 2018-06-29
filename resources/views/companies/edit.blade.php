@@ -32,7 +32,7 @@
     <div class="p-3">
         <h4 class="font-italic">Actions</h4>
         <ol class="list-unstyled">
-          <li><a href="/companies/{{ $company->id }}">View companies</a></li>
+          <li><a href="/companies/{{ $company->id }}">View company</a></li>
           <li><a href="/companies">All companies</a></li>
         </ol>
       </div>

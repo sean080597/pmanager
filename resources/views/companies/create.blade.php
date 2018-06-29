@@ -9,7 +9,7 @@
             {{-- <input type="hidden" name="_method" value="put"> --}}
 
             <div class="form-group">
-                <label for="company-name">Name<span class="required">*</span></label>
+                <label for="company-name">Company Name<span class="required">*</span></label>
                 <input type="text" placeholder="Enter name" id="company-name" name="name"
                     spellcheck="false" class="form-control" required>
             </div>

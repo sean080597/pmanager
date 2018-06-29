@@ -9,7 +9,8 @@
             <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
         </div>
     </div>
-    <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12" style="background-color: #fff; padding: 10px">
+      <a href="/projects/create" class="btn btn-default btn-sm pull-right">Add Project</a>
     @foreach($company->projects as $project)
         <div class="col-lg-4">
             <h2>{{$project->name}}</h2>
@@ -31,12 +32,12 @@
         <ol class="list-unstyled">
           <li><a href="/companies/{{ $company->id }}/edit">Edit</a></li>
           <li><a href="/projects/create">Add Project</a></li>
-          <li><a href="/companies">My Company</a></li>
+          <li><a href="/companies">My Companies</a></li>
           <li><a href="/companies/create">Create new Company</a></li>
           <li>
             <a href="/companies/{{ $company->id }}"
               onclick="
-                var result = confirm('Are you sure you wish to delete this project?');
+                var result = confirm('Are you sure you wish to delete this company?');
                 if(result){
                   event.preventDefault();
                   document.getElementById('delete-form').submit();
@@ -50,7 +51,6 @@
               <input type="hidden" name="_method" value="delete">
               {{ csrf_field() }}
             </form>
-
           </li>
         </ol>
       </div>

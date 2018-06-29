@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectsController extends Controller
 {
@@ -14,7 +15,11 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        //
+        if(Auth::check()){
+            $projects = Project::where('user_id', Auth::user()->id)->get();
+            return view('projects.index', ['projects'=>$projects]);
+        }
+        return view('auth.login');
     }
 
     /**
@@ -24,7 +29,7 @@ class ProjectsController extends Controller
      */
     public function create()
     {
-        //
+        return view('projects.create');
     }
 
     /**
@@ -35,7 +40,20 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(Auth::check()){
+            $project = Project::create([
+                'name' => $request->input('name'),
+                'description' => $request->input('description'),
+                'days' => $request->input('days'),
+                'user_id' => Auth::user()->id
+            ]);
+
+            if($project){
+                return redirect()->route('projects.show', ['project'=>$project->id])
+                ->with('success', 'Project created successfully');
+            }
+        }
+        return back()->withInput()->with('error', 'Error creating new project');
     }
 
     /**
@@ -58,7 +76,8 @@ class ProjectsController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        $project = Project::find($project->id);
+        return view('projects.edit', ['project' => $project]);
     }
 
     /**
@@ -70,7 +89,17 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $projectUpdate = Project::where('id', $project->id)
+        ->update([
+            'name'=>$request->input('name'),
+            'description'=>$request->input('description'),
+            'days'=>$request->input('days')
+        ]);
+        if($projectUpdate)
+            return redirect()->route('projects.show', ['project'=>$project->id])
+            ->with('success', 'Project updated successfully');
+
+        return back()->withInput()->with('error', 'Project could not be updated');
     }
 
     /**
@@ -81,6 +110,11 @@ class ProjectsController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $findProject = Project::find($project->id);
+        if($findProject->delete()){
+            return redirect()->route('projects.index')
+            ->with('success', 'Project deleted successfully');
+        }
+        return back()->withInput()->with('error', 'Project could not be deleted');
     }
 }
