@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-12" style="background-color: #fff; padding: 10px">
-      <a href="/projects/create" class="btn btn-default btn-sm pull-right">Add Project</a>
+      <a href="/projects/create/{{ $company->id }}" class="btn btn-default btn-sm pull-right">Add Project</a>
     @foreach($company->projects as $project)
         <div class="col-lg-4">
             <h2>{{$project->name}}</h2>
@@ -31,7 +31,7 @@
         <h4 class="font-italic">Actions</h4>
         <ol class="list-unstyled">
           <li><a href="/companies/{{ $company->id }}/edit">Edit</a></li>
-          <li><a href="/projects/create">Add Project</a></li>
+          <li><a href="/projects/create/{{ $company->id }}">Add Project</a></li>
           <li><a href="/companies">My Companies</a></li>
           <li><a href="/companies/create">Create new Company</a></li>
           <li>

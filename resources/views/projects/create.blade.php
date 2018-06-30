@@ -11,6 +11,7 @@
                 <label for="project-name">Project Name<span class="required">*</span></label>
                 <input type="text" placeholder="Enter name" id="project-name" name="name"
                     spellcheck="false" class="form-control" required>
+                <input type="hidden" name="company_id" value="{{ $company_id }}">
             </div>
             <div class="form-group">
                 <label for="project-description">Description<span class="required">*</span></label>
