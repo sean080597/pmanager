@@ -40,13 +40,7 @@
         </div>
     </div>
 
-    @foreach($project->comments as $comment)
-    <div class="col-lg-4 col-md-4 col-sm-4">
-        <h2>{{ $comment->body }}</h2>
-        <p class="text-danger">{{ $comment->url }}</p>
-        <p><a class="btn btn-primary" href="/projects/{{ $project->id }}" role="button">View Project >></a></p>
-    </div>
-    @endforeach
+    @include('partials.comments')
 
 </div>
 
@@ -54,10 +48,10 @@
     <div class="col-sm-12 col-md-12 col-lg-12">
         <h4 class="font-italic">Actions</h4>
         <ol class="list-unstyled">
-            <li><a href="/projects/{{ $project->id }}/edit">Edit</a></li>
-            <li><a href="/projects/create">Create new project</a></li>
+            <li><a href="/projects/{{ $project->id }}/edit"><i class="fas fa-edit"></i> Edit</a></li>
+            <li><a href="/projects/create"><i class="fas fa-plus-circle"></i> Create new project</a></li>
             {{-- <li><a href="/projects/create/{{ $company->id }}">Add Project</a></li> --}}
-            <li><a href="/projects">My projects</a></li>
+            <li><a href="/projects"><i class="far fa-user"></i> My projects</a></li><br>
 
             @if($project->user_id == Auth::user()->id)
 
@@ -70,7 +64,7 @@
                             document.getElementById('delete-form').submit();
                         }
                     ">
-                    Delete
+                    <i class="fas fa-power-off"></i> Delete
                 </a>
 
                 <form id="delete-form" action="{{ route('projects.destroy', [$project->id]) }}"
@@ -83,6 +77,29 @@
             @endif
 
         </ol>
+
+        <hr>
+        <h4>Add members</h4>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="input-group">
+                <input type="text" class="form-control" placeholder="Email">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Add!</button>
+                </span>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <h4>Team Members</h4>
+        <ol class="list-unstyled">
+            <li><a href="#">Telly Spencer</a></li>
+            <li><a href="#">Angelina London</a></li>
+            <li><a href="#">Hassie Wehner</a></li>
+            <li><a href="#">Manley Mohamed</a></li>
+        </ol>
+
     </div>
 </aside>
 @endsection
